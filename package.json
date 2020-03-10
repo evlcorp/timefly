@@ -1,0 +1,26 @@
+{
+  "name": "timefly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:client": "cd client; npm i && npm run build",
+    "build:server": "cd server; npm i",
+    "build": "concurrently \"npm run build:client\" \"npm run build:server\"",
+    "start": "cd server; npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evlcorp/timefly.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evlcorp/timefly/issues"
+  },
+  "homepage": "https://github.com/evlcorp/timefly#readme",
+  "dependencies": {
+    "concurrently": "^5.1.0"
+  }
+}
