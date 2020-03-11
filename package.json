@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:client": "cd client; npm i && npm run build",
-    "build:server": "cd server; npm i",
+    "build:client": "cd client && npm i && npm run build",
+    "build:server": "cd server && npm i",
     "build": "concurrently \"npm run build:client\" \"npm run build:server\"",
-    "start": "cd server; npm run start"
+    "start": "cd server && npm run start"
   },
   "repository": {
     "type": "git",
