@@ -1,10 +1,6 @@
 const router = require('express').Router()
 
-router.post('/contact',(req, res) => {
-  return res.json({
-    succes: true,
-    message: 'Hello from /api/v1'
-  })
-})
+router.use('/public', require('./public'))
+router.use('/user', require('./user'))
 
 module.exports = router
