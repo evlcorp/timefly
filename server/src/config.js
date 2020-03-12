@@ -2,14 +2,18 @@ require('dotenv').config()
 
 const {
   PORT,
-  GMAIL_USERNAME,
-  GMAIL_PASSWORD,
-  DESTINATION_EMAIL
+  MONGODB_URI,
+  NODE_ENV,
+  JWKS_URI,
+  AUDIENCE,
+  ISSUER
 } = process.env
 
 module.exports = {
   port: PORT || 5000,
-  gmailUsername: GMAIL_USERNAME || '',
-  gmailPassword: GMAIL_PASSWORD || '',
-  destinationEmail: DESTINATION_EMAIL || ''
+  mongodbUri: MONGODB_URI || '',
+  nodeEnv: NODE_ENV || 'development',
+  jwksUri: JWKS_URI || '',
+  audience: AUDIENCE || '',
+  issuer: ISSUER || ''
 }

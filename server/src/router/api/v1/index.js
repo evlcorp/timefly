@@ -1,10 +1,8 @@
 const router = require('express').Router()
+const jwtCheck = require('../../../middleware/jwtCheck')
 
-router.post('/contact',(req, res) => {
-  return res.json({
-    succes: true,
-    message: 'Hello from /api/v1'
-  })
-})
+router.use('/public', require('./public'))
+router.use('/user', jwtCheck, require('./user'))
+router.use('/manage', jwtCheck, require('./manage'))
 
 module.exports = router
