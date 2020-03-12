@@ -5,7 +5,7 @@ const Activity = require('../../../models/Activity')
 router.use('/activities', async (req, res) => {
   const activities = await Activity
     .find({ type: 'Base' })
-    .populate('category')
+    .populate('categories')
 
   return res.json({
     succes: true,

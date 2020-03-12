@@ -2,13 +2,14 @@ const router = require('express').Router()
 const Activity = require('../../../../models/Activity')
 
 router.post('/new', async (req, res) => {
-  const newActivity = Activity({
+  const newActivity = new Activity({
     ...req.body,
     type: 'Base'
   })
 
   try {
-    const activity = await newActivity.save()
+    const savedActivity = await newActivity.save()
+    const activity = await savedActivity.populate('categories').execPopulate()
 
     res.json({
       success: true,

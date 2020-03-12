@@ -1,44 +1,39 @@
 const { Schema, model } = require('mongoose')
-// const Category = require('./Category')
+const { emailRe } = require('../constants')
+
+function autoPopulateCategories (next) {
+  this.populate('categories')
+
+  next()
+}
 
 const ActivitySchema = new Schema({
   name: {
     type: String,
     required: true
   },
-  category: {
+  categories: [{
     type: Schema.Types.ObjectId,
     ref: 'category'
-  },
+  }],
   type: {
     type: String,
     enum: ['Base', 'Custom'],
     default: 'Base'
   },
-  status: {
+  userEmail: {
     type: String,
-    enum: ['Upcomming', 'InProgress', 'Finished'],
-    default: 'Upcomming'
-  },
-  startTime: {
-    type: Date,
-    default: Date.now()
-  },
-  endTime: {
-    type: Date,
-    required: false
+    required: false,
+    validate: function (v) {
+      return emailRe.test(v)
+    },
+    message: props => `${props.value} is not a valid email`
   }
 }, { timestamps: true })
 
-// ActivitySchema.statics = {
-//   findBaseActivities: async function (...args) {
-//     const model = this.model('comment')
+ActivitySchema.pre('find', autoPopulateCategories)
 
-//     const baseActivities = await model.find.apply(this, [{ type: 'Base' }, ...args])
-
-//     return baseActivities
-//   }
-// }
+ActivitySchema.pre('findOne', autoPopulateCategories)
 
 const Activity = model('activity', ActivitySchema)
 

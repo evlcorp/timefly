@@ -4,6 +4,7 @@ const { emailRe } = require('../constants.js')
 const CategorySchema = new Schema({
   title: {
     type: String,
+    unique: false,
     required: true
   },
   type: {

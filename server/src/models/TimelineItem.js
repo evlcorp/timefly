@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose')
-const { emailRe } = require('../constants.js')
+const { emailRe } = require('../constants')
 
 const TimelineItemSchema = new Schema({
   name: {
@@ -22,10 +22,7 @@ const TimelineItemSchema = new Schema({
   endTime: {
     type: Date,
     required: false
-  }
-}, { timestamps: true })
-
-const DashboardSchema = new Schema({
+  },
   userEmail: {
     type: String,
     required: true,
@@ -33,12 +30,9 @@ const DashboardSchema = new Schema({
       return emailRe.test(v)
     },
     message: props => `${props.value} is not a valid email`
-  },
-  timeline: [{
-    type: TimelineItemSchema
-  }]
-})
+  }
+}, { timestamps: true })
 
-const Dashboard = model('dashboard', DashboardSchema)
+const TimelineItem = model('timelineitem', TimelineItemSchema)
 
-module.exports = Dashboard
+module.exports = TimelineItem
