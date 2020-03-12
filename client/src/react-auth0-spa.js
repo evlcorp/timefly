@@ -32,6 +32,10 @@ export const Auth0Provider = ({
 
       const isAuthenticated = await auth0FromHook.isAuthenticated();
 
+      const data = await auth0FromHook.getIdTokenClaims()
+
+      console.log(data)
+
       setIsAuthenticated(isAuthenticated);
 
       if (isAuthenticated) {
