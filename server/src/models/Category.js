@@ -4,9 +4,13 @@ const { emailRe } = require('../constants.js')
 const CategorySchema = new Schema({
   title: {
     type: String,
-    unique: true
+    required: true
   },
-  custom: Boolean,
+  type: {
+    type: String,
+    enum: ['Base', 'Custom'],
+    default: 'Base'
+  },
   userEmail: {
     type: String,
     required: false,

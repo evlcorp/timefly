@@ -1,9 +1,9 @@
 const app = require('./app')
 const ip = require('ip')
-const { port, mongodbURI } = require('./config')
+const { port, mongodbUri } = require('./config')
 const mongoose = require('mongoose')
 
-mongoose.connect(mongodbURI, {
+mongoose.connect(mongodbUri, {
   useCreateIndex: true,
   useUnifiedTopology: true,
   useNewUrlParser: true

@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const cors = require('cors')
 
-const customMiddleware = require('./middleware')
 const router = require('./router')
 
 const app = express()
@@ -32,8 +31,5 @@ app.use(express.static(path.join(__dirname, '../../client/build')))
 
 // Setup router
 app.use(router)
-
-// Custom middleware
-app.use(customMiddleware)
 
 module.exports = app

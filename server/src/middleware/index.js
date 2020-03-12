@@ -1,3 +1,4 @@
-const errorHandler = require('./errorHandler')
-
-module.exports = [errorHandler]
+module.exports = {
+  jwtCheck: require('./jwtCheck'),
+  checkDashboard: require('./checkDashboard')
+}

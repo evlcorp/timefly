@@ -5,6 +5,7 @@ const Activity = require('./Activity')
 const DashboardSchema = new Schema({
   userEmail: {
     type: String,
+    required: true,
     unique: true,
     validate: function (v) {
       return emailRe.test(v)
