@@ -2,12 +2,12 @@ import React from 'react'
 import MainMobile from './MainMobile'
 import { useEffect } from 'react';
 
-const Main = ({items, setColor}) => {
+const Main = ({setColor, events, getContent, token}) => {
   useEffect(() => {
     setColor(window.location.pathname === '/calendar' ? '#F7FAFF' : 'white')
   }, [setColor])
   return (
-    <MainMobile items={items} />
+    <MainMobile token={token} events={events} getContent={getContent} />
   )
 }
 

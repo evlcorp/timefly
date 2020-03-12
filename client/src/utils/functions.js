@@ -35,3 +35,17 @@ export const edit = (type, id, data, success) => {
     .then(res => console.log(res))
     .catch(err => console.log(err))
 }
+
+
+export const remove = (type, id, token, success) => {
+  const url = baseUrl + type + id
+
+  const headers = {
+    authorization: 'Bearer ' + token
+  }
+
+  axios
+    .delete(url, {headers})
+    .then(res => success(res))
+    .catch(err => console.log(err))
+}

@@ -79,9 +79,9 @@ function App() {
         }
         <NavBar color={color} />
         <Switch>
-          <Route path="/" exact>
-            <Main setColor={setColor} events={events} />
-          </Route>
+          <PrivateRoute path="/" exact>
+            <Main token={token} getContent={() => getData()} setColor={setColor} events={events} />
+          </PrivateRoute>
           <Route path='/calendar' exact>
             <CalendarPage setColor={setColor} />
           </Route>
