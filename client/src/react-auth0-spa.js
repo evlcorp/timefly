@@ -1,3 +1,4 @@
+// src/react-auth0-spa.js
 import React, { useState, useEffect, useContext } from "react";
 import createAuth0Client from "@auth0/auth0-spa-js";
 
@@ -16,31 +17,30 @@ export const Auth0Provider = ({
   const [auth0Client, setAuth0] = useState();
   const [loading, setLoading] = useState(true);
   const [popupOpen, setPopupOpen] = useState(false);
-
+  const [token, setToken] = useState(null);
+  
   useEffect(() => {
     const initAuth0 = async () => {
       const auth0FromHook = await createAuth0Client(initOptions);
       setAuth0(auth0FromHook);
 
-      if (
-        window.location.search.includes("code=") &&
-        window.location.search.includes("state=")
-      ) {
+      if (window.location.search.includes("code=") &&
+          window.location.search.includes("state=")) {
         const { appState } = await auth0FromHook.handleRedirectCallback();
         onRedirectCallback(appState);
       }
 
       const isAuthenticated = await auth0FromHook.isAuthenticated();
 
-      const data = await auth0FromHook.getIdTokenClaims()
+      setIsAuthenticated(isAuthenticated)
 
-      console.log(data)
-
-      setIsAuthenticated(isAuthenticated);
+      
 
       if (isAuthenticated) {
         const user = await auth0FromHook.getUser();
         setUser(user);
+        const tokenClaims = await auth0FromHook.getIdTokenClaims()
+        setToken(tokenClaims.__raw)
       }
 
       setLoading(false);
@@ -78,6 +78,7 @@ export const Auth0Provider = ({
         user,
         loading,
         popupOpen,
+        token,
         loginWithPopup,
         handleRedirectCallback,
         getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
@@ -89,5 +90,5 @@ export const Auth0Provider = ({
     >
       {children}
     </Auth0Context.Provider>
-  );
-};
+  )
+}
