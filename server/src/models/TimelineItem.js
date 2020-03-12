@@ -15,11 +15,11 @@ const TimelineItemSchema = new Schema({
     enum: ['Pending', 'Finished', 'Canceled'],
     default: 'Pending'
   },
-  startTime: {
+  startDate: {
     type: Date,
     default: Date.now()
   },
-  endTime: {
+  endDate: {
     type: Date,
     required: false
   },
